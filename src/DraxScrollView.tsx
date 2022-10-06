@@ -80,47 +80,47 @@ const DraxScrollViewUnforwarded = (
 	// Handle auto-scrolling on interval.
 	const doScroll = useCallback(
 		() => {
-			const scroll = scrollRef.current;
-			const containerMeasurements = containerMeasurementsRef.current;
-			const contentSize = contentSizeRef.current;
-			if (!scroll || !containerMeasurements || !contentSize) {
-				return;
-			}
-			const scrollPosition = scrollPositionRef.current;
-			const autoScrollState = autoScrollStateRef.current;
-			const jump = {
-				x: containerMeasurements.width * autoScrollJumpRatio,
-				y: containerMeasurements.height * autoScrollJumpRatio,
-			};
-			let xNew: number | undefined;
-			let yNew: number | undefined;
-			if (autoScrollState.x === AutoScrollDirection.Forward) {
-				const xMax = contentSize.x - containerMeasurements.width;
-				if (scrollPosition.x < xMax) {
-					xNew = Math.min(scrollPosition.x + jump.x, xMax);
-				}
-			} else if (autoScrollState.x === AutoScrollDirection.Back) {
-				if (scrollPosition.x > 0) {
-					xNew = Math.max(scrollPosition.x - jump.x, 0);
-				}
-			}
-			if (autoScrollState.y === AutoScrollDirection.Forward) {
-				const yMax = contentSize.y - containerMeasurements.height;
-				if (scrollPosition.y < yMax) {
-					yNew = Math.min(scrollPosition.y + jump.y, yMax);
-				}
-			} else if (autoScrollState.y === AutoScrollDirection.Back) {
-				if (scrollPosition.y > 0) {
-					yNew = Math.max(scrollPosition.y - jump.y, 0);
-				}
-			}
-			if (xNew !== undefined || yNew !== undefined) {
-				scroll.scrollTo({
-					x: xNew ?? scrollPosition.x,
-					y: yNew ?? scrollPosition.y,
-				});
-				(scroll as any).flashScrollIndicators(); // ScrollView typing is missing this method
-			}
+			// const scroll = scrollRef.current;
+			// const containerMeasurements = containerMeasurementsRef.current;
+			// const contentSize = contentSizeRef.current;
+			// if (!scroll || !containerMeasurements || !contentSize) {
+			// 	return;
+			// }
+			// const scrollPosition = scrollPositionRef.current;
+			// const autoScrollState = autoScrollStateRef.current;
+			// const jump = {
+			// 	x: containerMeasurements.width * autoScrollJumpRatio,
+			// 	y: containerMeasurements.height * autoScrollJumpRatio,
+			// };
+			// let xNew: number | undefined;
+			// let yNew: number | undefined;
+			// if (autoScrollState.x === AutoScrollDirection.Forward) {
+			// 	const xMax = contentSize.x - containerMeasurements.width;
+			// 	if (scrollPosition.x < xMax) {
+			// 		xNew = Math.min(scrollPosition.x + jump.x, xMax);
+			// 	}
+			// } else if (autoScrollState.x === AutoScrollDirection.Back) {
+			// 	if (scrollPosition.x > 0) {
+			// 		xNew = Math.max(scrollPosition.x - jump.x, 0);
+			// 	}
+			// }
+			// if (autoScrollState.y === AutoScrollDirection.Forward) {
+			// 	const yMax = contentSize.y - containerMeasurements.height;
+			// 	if (scrollPosition.y < yMax) {
+			// 		yNew = Math.min(scrollPosition.y + jump.y, yMax);
+			// 	}
+			// } else if (autoScrollState.y === AutoScrollDirection.Back) {
+			// 	if (scrollPosition.y > 0) {
+			// 		yNew = Math.max(scrollPosition.y - jump.y, 0);
+			// 	}
+			// }
+			// if (xNew !== undefined || yNew !== undefined) {
+			// 	scroll.scrollTo({
+			// 		x: xNew ?? scrollPosition.x,
+			// 		y: yNew ?? scrollPosition.y,
+			// 	});
+			// 	(scroll as any).flashScrollIndicators(); // ScrollView typing is missing this method
+			// }
 		},
 		[autoScrollJumpRatio],
 	);

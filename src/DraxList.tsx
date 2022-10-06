@@ -319,40 +319,40 @@ const DraxListUnforwarded = <T extends unknown>(
 	// Handle auto-scrolling on interval.
 	const doScroll = useCallback(
 		() => {
-			const flatList = flatListRef.current;
-			const containerMeasurements = containerMeasurementsRef.current;
-			const contentSize = contentSizeRef.current;
-			if (!flatList || !containerMeasurements || !contentSize) {
-				return;
-			}
-			let containerLength: number;
-			let contentLength: number;
-			let prevOffset: number;
-			if (horizontal) {
-				containerLength = containerMeasurements.width;
-				contentLength = contentSize.x;
-				prevOffset = scrollPositionRef.current.x;
-			} else {
-				containerLength = containerMeasurements.height;
-				contentLength = contentSize.y;
-				prevOffset = scrollPositionRef.current.y;
-			}
-			const jumpLength = containerLength * 0.2;
-			let offset: number | undefined;
-			if (scrollStateRef.current === AutoScrollDirection.Forward) {
-				const maxOffset = contentLength - containerLength;
-				if (prevOffset < maxOffset) {
-					offset = Math.min(prevOffset + jumpLength, maxOffset);
-				}
-			} else if (scrollStateRef.current === AutoScrollDirection.Back) {
-				if (prevOffset > 0) {
-					offset = Math.max(prevOffset - jumpLength, 0);
-				}
-			}
-			if (offset !== undefined) {
-				flatList.scrollToOffset({ offset });
-				flatList.flashScrollIndicators();
-			}
+			// const flatList = flatListRef.current;
+			// const containerMeasurements = containerMeasurementsRef.current;
+			// const contentSize = contentSizeRef.current;
+			// if (!flatList || !containerMeasurements || !contentSize) {
+			// 	return;
+			// }
+			// let containerLength: number;
+			// let contentLength: number;
+			// let prevOffset: number;
+			// if (horizontal) {
+			// 	containerLength = containerMeasurements.width;
+			// 	contentLength = contentSize.x;
+			// 	prevOffset = scrollPositionRef.current.x;
+			// } else {
+			// 	containerLength = containerMeasurements.height;
+			// 	contentLength = contentSize.y;
+			// 	prevOffset = scrollPositionRef.current.y;
+			// }
+			// const jumpLength = containerLength * 0.2;
+			// let offset: number | undefined;
+			// if (scrollStateRef.current === AutoScrollDirection.Forward) {
+			// 	const maxOffset = contentLength - containerLength;
+			// 	if (prevOffset < maxOffset) {
+			// 		offset = Math.min(prevOffset + jumpLength, maxOffset);
+			// 	}
+			// } else if (scrollStateRef.current === AutoScrollDirection.Back) {
+			// 	if (prevOffset > 0) {
+			// 		offset = Math.max(prevOffset - jumpLength, 0);
+			// 	}
+			// }
+			// if (offset !== undefined) {
+			// 	flatList.scrollToOffset({ offset });
+			// 	flatList.flashScrollIndicators();
+			// }
 		},
 		[horizontal],
 	);
